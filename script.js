@@ -1,13 +1,20 @@
 // Global variables
-let color = 'black'
+let color = 'black';
+let click = false;
 
 // Main fucntion
 document.addEventListener('DOMContentLoaded', function(){
     createBoard(16); // Default board of size 16 is created
 
+    // Draw is enabled if there is a board/body click (not a BUTTON click)
+    document.querySelector('body').addEventListener('click', function(e){
+        if (e.target.tagName != 'BUTTON'){
+            click = !click;
+        }
+    })
+
     // Custom board is created if user presses select button
-    let btn_select = document.querySelector('#pop-up'); // get the select button
-    btn_select.addEventListener('click', function(){ // onclick function for select button
+    document.querySelector('#pop-up').addEventListener('click', function(){
         let size = getSize(); // call getSize fucntion
         createBoard(size);  // call createBoard fucntion
     })
@@ -48,11 +55,13 @@ function getSize(){
 
 // Drawing - Change background color of a div
 function colorDiv(){
-    if (color == 'rainbow'){
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // change background color of a div based on value of color global variable
-    }
-    else {
-        this.style.backgroundColor = 'black'; // change background color of a div based on value of color global variable
+    if (click){
+        if (color == 'rainbow'){
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // change background color of a div based on value of color global variable
+        }
+        else {
+            this.style.backgroundColor = 'black'; // change background color of a div based on value of color global variable
+        }
     }
 }
 
