@@ -62,3 +62,9 @@ function colorDiv(){
 function setColor(colorChoice){
     color = colorChoice; // set global varibale to the balck or rainbow
 }
+
+// ResetBoard function
+function resetBoard(){
+    let divs = document.querySelectorAll('div'); // get all the divs into array of divs
+    divs.forEach((div) => div.style.backgroundColor = 'white'); // for each div in array of divs change the background color to white
+}
