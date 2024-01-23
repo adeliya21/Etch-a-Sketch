@@ -1,3 +1,6 @@
+// Global variables
+let color = 'black'
+
 // Main fucntion
 document.addEventListener('DOMContentLoaded', function(){
     createBoard(16); // Default board of size 16 is created
@@ -19,6 +22,10 @@ function createBoard(size){
     let numDivs = size * size;
     for(let i = 0; i < numDivs; i++){
         let div = document.createElement('div'); // create div elements
+
+        // Drawing - Change background color of a div
+        div.addEventListener('mouseover', colorDiv);
+
         board.insertAdjacentElement('beforeend', div); // insert created div to board
     }
 }
@@ -37,4 +44,21 @@ function getSize(){
         message.innerHTML = 'Now you can play'; // populate message based on user input size  
         return input; // return board size
     }
+}
+
+// Drawing - Change background color of a div
+function colorDiv(){
+    if (color == 'rainbow'){
+        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`; // change background color of a div based on value of color global variable
+    }
+    else {
+        this.style.backgroundColor = 'black'; // change background color of a div based on value of color global variable
+    }
+}
+
+// Set color function
+// - the fucntion with black colorChoice sets global variable to balck if Black button is pressed
+// - the fucntion with rainbow colorChoice sets global variable to rainbow if Rainbow button is pressed
+function setColor(colorChoice){
+    color = colorChoice; // set global varibale to the balck or rainbow
 }
